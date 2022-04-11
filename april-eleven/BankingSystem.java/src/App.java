@@ -103,9 +103,6 @@ public class App {
     if (currency == newCurrencyOption) {
       System.out.println("No conversions to be made.");
     } else {
-      System.out.println("Abot ko diri!");
-      System.out.println(currency);
-      System.out.println(newCurrencyOption);
       switch(newCurrencyOption) {
         case "PHP":
           if (currency == "JPY") {
