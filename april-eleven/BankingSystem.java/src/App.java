@@ -82,7 +82,7 @@ public class App {
           }
         }
         String newCurrency = sc.nextLine();
-        newAmount = convertFunds(newAmount, currency, newCurrency);
+        newAmount = convertFunds(newAmount, currency, newCurrency.toUpperCase());
         currency = newCurrency;
         displayInformation(userName, newAmount, currency);
         break;
@@ -104,7 +104,7 @@ public class App {
     System.out.println("");
     System.out.println("==================================================");
     System.out.println("");
-    System.out.println("Hello " + userName + "! Your available funds amount to " + currency + funds);
+    System.out.println("Hello " + userName + "! Your available funds amount to " + currency.toUpperCase() + funds);
     System.out.println("");
     System.out.println("==================================================");
     System.out.println("");
