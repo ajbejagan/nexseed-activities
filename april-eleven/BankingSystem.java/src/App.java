@@ -18,9 +18,11 @@ public class App {
     System.out.println("Welcome to the Bank of Lahug online banking " + userName + "!");
     
     while (exitTransaction < 1) {
-      double[] values = transactionScreen(userName, funds, currency, currencies, sc, exitTransaction);
+      double[] values = transactionPrompt(userName, funds, currency, currencies, sc, exitTransaction);
       funds = (double) values[0];
-      exitTransaction = values[1];
+      int newCurrencyIndex = (int) values[1];
+      currency = currencies[newCurrencyIndex];
+      exitTransaction = values[2];
     }
     
     sc.close();
@@ -29,11 +31,11 @@ public class App {
 
   // user transaction
 
-  public static double[] transactionScreen(String userName, double funds, String currency, String[] currencies, Scanner sc, double exitTransaction) {
+  public static double[] transactionPrompt(String userName, double funds, String currency, String[] currencies, Scanner sc, double exitTransaction) {
 
     double newAmount = funds;
-    double[] values = new double[2];
-    values[1] = exitTransaction;
+    double[] values = new double[3];
+    values[2] = exitTransaction;
     int optionSelected;
 
     System.out.println("What would you like to do next?");
@@ -49,8 +51,9 @@ public class App {
     switch(optionSelected) {
 
       case 0:
-      values[1] = 1;
+      values[2] = 1;
         displayInformation(userName, newAmount, currency);
+        displayExitMessage();
         break;
 
       case 1:
@@ -58,11 +61,10 @@ public class App {
         break;
 
       case 2:
-
         System.out.println("Please provide the amount you would like to deposit.");
         double deposit = sc.nextDouble();
         sc.nextLine();
-        newAmount = addFunds(newAmount, deposit);
+        newAmount = depositFunds(newAmount, deposit);
         displayInformation(userName, newAmount, currency);
         break;
 
@@ -81,9 +83,14 @@ public class App {
             System.out.println("Type : " + currencies[i] + " for " + currencies[i]);
           }
         }
-        String newCurrency = sc.nextLine();
-        newAmount = convertFunds(newAmount, currency, newCurrency.toUpperCase());
+        String newCurrency = sc.nextLine().toUpperCase();
+        newAmount = convertFunds(newAmount, currency, newCurrency);
         currency = newCurrency;
+        for (int i = 0; i < currencies.length; i++) {
+          if (newCurrency.equals(currencies[i])) {
+            values[1] = (double) i;
+          }
+        }
         displayInformation(userName, newAmount, currency);
         break;
 
@@ -98,21 +105,36 @@ public class App {
 
   }
 
+  // print exit message
+
+  public static void displayExitMessage() {
+    System.out.println("");
+    System.out.println("**************************************************");
+    System.out.println("*                                                *");
+    System.out.println("*        Thank you for banking with us!          *");
+    System.out.println("*                                                *");
+    System.out.println("**************************************************");
+    System.out.println("");
+  }
+
   // display account info
 
   public static void displayInformation(String userName, double funds, String currency) {
     System.out.println("");
-    System.out.println("==================================================");
+    System.out.println("**************************************************");
     System.out.println("");
-    System.out.println("Hello " + userName + "! Your available funds amount to " + currency.toUpperCase() + funds);
-    System.out.println("");
+    System.out.println("Hello " + userName + "! Here are your account details");
     System.out.println("==================================================");
+    System.out.println("Account name: " + userName);
+    System.out.println("Available funds: " + currency.toUpperCase() + " " + funds);
+    System.out.println("");
+    System.out.println("**************************************************");
     System.out.println("");
   }
 
   // deposit amount to the account
 
-  public static double addFunds(double funds, double deposit) {
+  public static double depositFunds(double funds, double deposit) {
 
     double newAmount = funds;
 
@@ -168,7 +190,7 @@ public class App {
           if (currency == "PHP") {
             newAmount = funds * 2.41;
           } else if (currency == "USD") {
-            newAmount = funds * 0.0080;
+            newAmount = funds * 125.49;
           }
           break;
 
@@ -176,7 +198,7 @@ public class App {
           if (currency == "PHP") {
             newAmount = funds * 0.019;
           } else if (currency == "JPY") {
-            newAmount = funds * 125.49;
+            newAmount = funds * 0.0080;
           }
           break;
 
