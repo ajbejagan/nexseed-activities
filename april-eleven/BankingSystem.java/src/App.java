@@ -175,7 +175,6 @@ public class App {
     if (currency == newCurrencyOption) {
       System.out.println("No conversions to be made.");
     } else {
-      System.out.println(funds);
       switch(newCurrencyOption) {
 
         case "PHP":
