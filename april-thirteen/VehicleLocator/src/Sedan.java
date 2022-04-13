@@ -4,7 +4,7 @@ public class Sedan extends Car {
 
   private double gas;
 
-  public Sedan(String name, String model, String brand, int year, String location, double gas) {
+  Sedan(String name, String model, String brand, int year, String location, double gas) {
     super(name, model, brand, year, location);
     this.gas = gas;
   }
