@@ -1,6 +1,8 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
+        printBorder(1);
+
         // activity 1
         
         Car familyCar = new Car("Xpander", "GLS Sport A/T", "Mitsubishi", 2019, "Casay");
@@ -11,8 +13,7 @@ public class App {
         System.out.println("We are currently at " + familyCar.getLocation());
         System.out.println("=================================================="); // ignore this line, for formatting purposes only
 
-        System.out.println(""); // ignore this line, for formatting purposes only
-        System.out.println(""); // ignore this line, for formatting purposes only
+        printBorder(2);
 
         // activity 2
 
@@ -48,5 +49,24 @@ public class App {
         //     System.out.println(cars[i].getLocation());
         // }
 
+        printBorder(3);
+
+        // activity 3
+
+        Sedan dreamCar = new Sedan("Camry", "2.5 V HEV", "Toyota", 2022, "Lahug", 10);
+
+        System.out.println("=================================================="); // ignore this line, for formatting purposes only
+        dreamCar.travel();
+        System.out.println("The remaining gas after traveling to " + dreamCar.getLocation() + " is " + dreamCar.getGas());
+        System.out.println("=================================================="); // ignore this line, for formatting purposes only
+
+    }
+
+    public static void printBorder(int activityNumber) {
+        System.out.println(""); // ignore this line, for formatting purposes only
+        System.out.println(""); // ignore this line, for formatting purposes only
+        System.out.println("******************* Activity " + activityNumber + " *******************"); // ignore this line, for formatting purposes only
+        System.out.println(""); // ignore this line, for formatting purposes only
+        System.out.println(""); // ignore this line, for formatting purposes only
     }
 }
