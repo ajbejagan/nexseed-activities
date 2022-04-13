@@ -13,11 +13,6 @@ public class Car {
     this.location = location;
   }
 
-  // Optional method: display current location of the car using a method - DRY concept
-  public void trackCurrentLocation() {
-    System.out.println("We are currently at " + location);
-  }
-
   public void travel(String place) {
     System.out.println("We just arrived at " + place);
     this.location = place;
