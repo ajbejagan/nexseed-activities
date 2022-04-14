@@ -8,9 +8,9 @@ public class App {
         Car familyCar = new Car("Xpander", "GLS Sport A/T", "Mitsubishi", 2019, "Casay");
 
         System.out.println("=================================================="); // ignore this line, for formatting purposes only
-        System.out.println("We are currently at " + familyCar.getLocation());
+        System.out.println("We are currently at " + familyCar.getCurrentLocation());
         familyCar.travel("Lahug");
-        System.out.println("We are currently at " + familyCar.getLocation());
+        System.out.println("We are currently at " + familyCar.getCurrentLocation());
         System.out.println("=================================================="); // ignore this line, for formatting purposes only
 
         printBorder(2);
@@ -32,9 +32,9 @@ public class App {
             if (i != 0) {
                 System.out.println("=================================================="); // ignore this line, for formatting purposes only
             }
-            System.out.println("We are currently at " + cars[i].getLocation());
+            System.out.println("We are currently at " + cars[i].getCurrentLocation());
             cars[i].travel(travelLocations[i]);
-            System.out.println("We are currently at " + cars[i].getLocation());
+            System.out.println("We are currently at " + cars[i].getCurrentLocation());
             if (i == (cars.length)) {
                 System.out.println("=================================================="); // ignore this line, for formatting purposes only
             }
@@ -53,11 +53,11 @@ public class App {
 
         // activity 3
 
-        Sedan dreamCar = new Sedan("Camry", "2.5 V HEV", "Toyota", 2022, "Lahug", 10);
+        Car dreamCar = new Car("Camry", "Camry 2.5 V HEV", "Toyota", 2022, "Lahug", 10);
 
         System.out.println("=================================================="); // ignore this line, for formatting purposes only
         dreamCar.travel();
-        System.out.println("The remaining gas after traveling to " + dreamCar.getLocation() + " is " + dreamCar.getGas());
+        System.out.println("The remaining gas after traveling to " + dreamCar.getCurrentLocation() + " from " + dreamCar.getPrevLocation() + " is " + dreamCar.getGas());
         System.out.println("=================================================="); // ignore this line, for formatting purposes only
 
     }

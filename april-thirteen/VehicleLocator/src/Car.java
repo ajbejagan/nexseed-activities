@@ -1,21 +1,63 @@
+import java.util.Scanner;
+
 public class Car {
   private String name;
   private String model;
   private String brand;
   private int year;
-  private String location;
+  private String prevLocation;
+  private String currentLocation;
+  private double gas = 10;
 
-  Car(String name, String model, String brand, int year, String location) {
+  Car(String name, String model, String brand, int year, String currentLocation, double gas) {
     this.name = name;
     this.model = model;
     this.brand = brand;
     this.year = year;
-    this.location = location;
+    this.prevLocation = currentLocation;
+    this.currentLocation = currentLocation;
+    this.gas = gas;
+  }
+
+  Car(String name, String model, String brand, int year, String currentLocation) {
+    this.name = name;
+    this.model = model;
+    this.brand = brand;
+    this.year = year;
+    this.prevLocation = currentLocation;
+    this.currentLocation = currentLocation;
   }
 
   public void travel(String place) {
     System.out.println("We just arrived at " + place);
-    this.location = place;
+    this.prevLocation = this.currentLocation;
+    this.currentLocation = place;
+  }
+
+  public void travel() {
+    Scanner sc = new Scanner(System.in);
+    // ask user for the place to travel to
+    System.out.println("Provide the location you are headed to: ");
+    String newLocation = sc.nextLine();
+    // set prev location to the currentLocation
+    this.prevLocation = this.currentLocation;
+    // set the location to the place traveled
+    this.currentLocation = newLocation;
+    // ask user for the travel distance
+    System.out.println("Provide the distance from where you are currently at to where you are headed: ");
+    double distance = sc.nextDouble();
+    sc.nextLine();
+    sc.close();
+    // set the gas to the remaining available gas
+    this.gas = calculateAvailableGas(distance);
+  }
+
+  public double calculateAvailableGas(double distance) {
+    double gasPerLiter = 15.5;
+    // calculate gas used
+    double gasUsed = distance / gasPerLiter;
+    // calculate the remaining available gas
+    return this.gas - gasUsed;
   }
 
   public String getName() {
@@ -50,13 +92,28 @@ public class Car {
     this.year = year;
   }
 
-  public String getLocation() {
-    return location;
+  public String getPrevLocation() {
+    return prevLocation;
   }
 
-  public void setLocation(String location) {
-    this.location = location;
+  public void setPrevLocation(String prevLocation) {
+    this.prevLocation = prevLocation;
   }
 
+  public String getCurrentLocation() {
+    return currentLocation;
+  }
+
+  public void setCurrentLocation(String currentLocation) {
+    this.currentLocation = currentLocation;
+  }
+
+  public double getGas() {
+    return gas;
+  }
+
+  public void setGas(double gas) {
+    this.gas = gas;
+  }
   
 }
