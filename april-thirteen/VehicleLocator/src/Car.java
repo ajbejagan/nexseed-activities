@@ -8,6 +8,18 @@ public class Car {
   private String prevLocation;
   private String currentLocation;
   private double gas = 10;
+  private double gasConsumption = 15.5;
+
+  Car(String name, String model, String brand, int year, String currentLocation, double gas, double gasConsumption) {
+    this.name = name;
+    this.model = model;
+    this.brand = brand;
+    this.year = year;
+    this.prevLocation = currentLocation;
+    this.currentLocation = currentLocation;
+    this.gas = gas;
+    this.gasConsumption = gasConsumption;
+  }
 
   Car(String name, String model, String brand, int year, String currentLocation, double gas) {
     this.name = name;
@@ -34,8 +46,7 @@ public class Car {
     this.currentLocation = place;
   }
 
-  public void travel() {
-    Scanner sc = new Scanner(System.in);
+  public void travel(Scanner sc) {
     // ask user for the place to travel to
     System.out.println("Provide the location you are headed to: ");
     String newLocation = sc.nextLine();
@@ -47,15 +58,14 @@ public class Car {
     System.out.println("Provide the distance from where you are currently at to where you are headed: ");
     double distance = sc.nextDouble();
     sc.nextLine();
-    sc.close();
+
     // set the gas to the remaining available gas
     this.gas = calculateAvailableGas(distance);
   }
 
   public double calculateAvailableGas(double distance) {
-    double gasPerLiter = 15.5;
     // calculate gas used
-    double gasUsed = distance / gasPerLiter;
+    double gasUsed = distance / gasConsumption;
     // calculate the remaining available gas
     return this.gas - gasUsed;
   }
@@ -116,4 +126,12 @@ public class Car {
     this.gas = gas;
   }
   
+  public double getGasConsumption() {
+    return gasConsumption;
+  }
+
+  public void setGasConsumption(double gasConsumption) {
+    this.gasConsumption = gasConsumption;
+  }
+
 }
