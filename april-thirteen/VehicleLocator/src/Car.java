@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 public class Car {
+  // activity 1
   private String name;
   private String model;
   private String brand;
   private int year;
   private String prevLocation;
   private String currentLocation;
+  // activity 3
   private double gas = 10;
   private double gasConsumption = 15.5;
 
